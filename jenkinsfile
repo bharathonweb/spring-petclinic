@@ -10,7 +10,7 @@ pipeline{
         stage ('practice'){
             agent {label 'OPENJDK-8-UBUNTU'}
             steps {
-                git url : 'https://github.com/bharathonweb/spring-petclinic.git',
+                git url : 'https://github.com/spring-projects/spring-petclinic.git',
                 branch : 'master'
                 
             }
