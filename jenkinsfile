@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    stages {
+        stage('test'){
+            steps {
+                sh 'echo welcome'
+            }
+
+        }
+        stage ('practice'){
+            agent {label 'OPENJDK-8-UBUNTU'}
+            steps {
+                git url : 'https://github.com/bharathonweb/spring-petclinic.git',
+                branch : 'master'
+                
+            }
+        }
+    }
