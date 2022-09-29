@@ -7,13 +7,17 @@ pipeline{
                 git url : 'https://github.com/bharathonweb/spring-petclinic.git',
                 branch : 'main'
             }
-
+            }
         }
         stage ('build'){
              steps {
                sh '"/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn package'
             }
         }
+        stage ('archive results'){
+            steps {
+                junit '**/surefire-reports/*.xml'
+            }
+        }
     }
-}  
-}
+} 
