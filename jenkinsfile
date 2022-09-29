@@ -1,19 +1,19 @@
 pipeline{
-    agent any
+    agent label 'OPENJDK-8-UBUNTU'
     stages {
-        stage('test'){
+        stage('vcs'){
             steps {
-                sh 'echo welcome'
+                steps {
+                git url : 'https://github.com/bharathonweb/spring-petclinic.git',
+                branch : 'main'
             }
 
         }
-        stage ('practice'){
-            agent {label 'OPENJDK-8-UBUNTU'}
-            steps {
-                git url : 'https://github.com/bharathonweb/spring-petclinic.git',
-                branch : 'main'
-                
+        stage ('build'){
+             steps {
+               sh '"/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn package'
             }
         }
     }
 }  
+}
