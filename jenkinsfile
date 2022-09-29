@@ -1,5 +1,5 @@
 pipeline{
-    agent label 'OPENJDK-8-UBUNTU'
+    agent {label 'OPENJDK-8-UBUNTU'}
     stages {
         stage('vcs'){
             steps {
