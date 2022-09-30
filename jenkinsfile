@@ -1,9 +1,13 @@
 pipeline{
-    agent {label 'OPENJDK-8-UBUNTU'}    
+    agent {label 'OPENJDK-8-UBUNTU'}
+    parameters {
+        choice(name: 'BRANCH_TO_BUILD', choices: ['main'], description: 'Branch to build')
+        string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'maven goal to build package')
+    }    
     stages {
         stage('vcs'){
             steps {
-                git branch: 'main',
+                git branch: "$params.branch",
                 url : 'https://github.com/bharathonweb/spring-petclinic.git'
                
              }
@@ -11,7 +15,7 @@ pipeline{
         
         stage('build'){
              steps {
-               sh '/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn package'
+               sh "/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn ${params.MAVEN_GOAL}"
             }
         }
         stage ('archive results'){
