@@ -10,7 +10,7 @@ pipeline{
         
         stage('build'){
              steps {
-               sh "/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn package"
+               sh '/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn package'
             }
         }
         stage ('archive results'){
