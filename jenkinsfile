@@ -5,13 +5,13 @@ pipeline{
             steps {
                 steps {
                 git url : 'https://github.com/bharathonweb/spring-petclinic.git',
-                branch : 'main'
+                git branch: "${params.BRANCH_TO_BUILD}"
             }
             }
         }
         stage ('build'){
              steps {
-               sh "/usr/local/apache-maven/apache-maven-3.8.6/bin/mvn ${params.$MAVEN-GOAL-1}"
+               sh "/opt/apache-maven-3.8.6/bin/mvn ${params.$MAVEN-GOAL-1}"
             }
         }
         stage ('archive results'){
